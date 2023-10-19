@@ -23,14 +23,14 @@ public class YandexTest {
         driver.findElement(LOGIN_BUTTON).click();
         waitForElementDisplayed(AUTH_POP_UP_LOCATOR, driver,5);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(driver.findElement(AUTH_POP_UP_LOCATOR).isDisplayed());
+        softAssert.assertTrue(driver.findElement(AUTH_POP_UP_LOCATOR).isDisplayed(), "Login Form is not displayed");
         driver.findElement(USERNAME_FIELD).sendKeys(LOGIN_INPUT2);
         driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
         waitForElementDisplayed(CURRENT_ACCOUNT, driver,5);
         driver.findElement(PASSWORD_FIELD).sendKeys(PASSWORD_INPUT2);
         driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
         waitForElementDisplayed(MAIL_APP_CONTENT, driver,5);
-        softAssert.assertTrue(driver.findElement(MAIL_APP_CONTENT).isDisplayed(), "Folder is not displayed");
+        softAssert.assertTrue(driver.findElement(MAIL_APP_CONTENT).isDisplayed(), "Inbox is not displayed");
         softAssert.assertAll("Something goes wrong with login Test");
     }
 

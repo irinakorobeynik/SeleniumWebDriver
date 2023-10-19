@@ -12,15 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 
 public class UtilityClass {
-    public static void waitForElementDisplayed(By element, WebDriver driver) {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(element));
-    }
-
-    public static void waitIfElementDisplayed(WebDriver driver, By element) {
-        if (driver.findElement(element).isDisplayed()) {
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        }
-
+    public static void waitForElementDisplayed(By element, WebDriver driver, int sec) {
+        new WebDriverWait(driver, sec).until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
     public static String getPropertyValue(String property){

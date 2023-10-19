@@ -2,7 +2,7 @@ package org.example;
 
 import org.openqa.selenium.By;
 
-import static org.example.UtilityClass.getPropertyValue;
+import static org.example.utilities.CommonUtils.getPropertyValue;
 
 public class ByVariables {
     public static final String MAIL_RU_URL = getPropertyValue("url");

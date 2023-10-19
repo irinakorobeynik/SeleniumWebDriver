@@ -1,20 +1,13 @@
-package org.example;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+package org.example.utilities;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 
-public class UtilityClass {
-    public static void waitForElementDisplayed(By element, WebDriver driver, int sec) {
-        new WebDriverWait(driver, sec).until(ExpectedConditions.visibilityOfElementLocated(element));
-    }
+public class CommonUtils {
+
 
     public static String getPropertyValue(String property){
         String value = null;

@@ -5,12 +5,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import static org.example.ByVariables.*;
-import static org.example.UtilityClass.*;
+import static org.example.utilities.WebUtils.*;
 
 
 public class YandexTest {
 
-    private WebDriver driver = new ChromeDriver();
+    private static final WebDriver driver = new ChromeDriver();
     @BeforeMethod
     public void openBrowser() {
         driver.get(MAIL_RU_URL);

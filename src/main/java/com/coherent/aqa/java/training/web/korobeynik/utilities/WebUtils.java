@@ -1,6 +1,6 @@
 package com.coherent.aqa.java.training.web.korobeynik.utilities;
 
-import org.openqa.selenium.Alert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,6 +22,13 @@ public class WebUtils {
 
     }
 
+    public static void waitForElementToHaveTextAndChild(By element, By childElement, WebDriver driver, int sec, String text) {
+        new WebDriverWait(driver, Duration.ofSeconds(sec)).until(ExpectedConditions.and(
+                ExpectedConditions.textToBePresentInElement(driver.findElement(element), text),
+                ExpectedConditions.visibilityOfElementLocated(childElement)
+        ));
+    }
+
     @DataProvider(name = "credentialsDataProvider")
     public static Object[][] credentialsDataProvider() {
         return new Object[][]{
@@ -30,6 +37,7 @@ public class WebUtils {
 
         };
     }
+
     @DataProvider(name = "alertDataProvider")
     public static Object[][] alertDataProvider() {
         return new Object[][]{
@@ -37,7 +45,6 @@ public class WebUtils {
                 {"dismiss"}
         };
     }
-
 
 
     public static void waitForAlertDisplayed(WebDriver driver, int sec) {

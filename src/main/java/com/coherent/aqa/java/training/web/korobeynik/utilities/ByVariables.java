@@ -1,18 +1,20 @@
 package com.coherent.aqa.java.training.web.korobeynik.utilities;
 
-import com.coherent.aqa.java.training.web.korobeynik.utilities.CommonUtils;
 import org.openqa.selenium.By;
 
 public class ByVariables {
     public static final String MAIL_RU_URL = CommonUtils.getPropertyValue("url");
     public static final String MULTISELECT_URL = CommonUtils.getPropertyValue("url2");
     public static final String ALERT_URL = CommonUtils.getPropertyValue("url3");
+    public static final String DL_URL = CommonUtils.getPropertyValue("url4");
     public static final String USERNAME = CommonUtils.getPropertyValue("user");
     public static final String ALERT_TEXT_BOX = "I am an alert box!";
     public static final String CONFIRM_TEXT_BOX = "Press a button!";
     public static final String CONFIRM_POSITIVE_TEXT = "You pressed OK!";
     public static final String CONFIRM_NEGATIVE_TEXT ="You pressed Cancel!" ;
     public static final String PROMPT_TEXT_BOX = "Please enter your name";
+    public static final String DL_FIRST_NAME_LABEL = "First Name :";
+    public static final String DL_LAST_NAME_LABEL = "Last Name :";
     public static final By AUTH_POP_UP_LOCATOR = By.className("passp-auth-content");
     public static final By LOGIN_BUTTON = By.id("header-login-button");
     public static final By LOGIN_BUTTON_IN_POP_UP = By.cssSelector("button[type=submit]");
@@ -36,8 +38,9 @@ public class ByVariables {
     public static final By CONFIRM_BUTTON = By.cssSelector("button[onclick='myConfirmFunction()']");
     public static final By PROMPT_BUTTON = By.cssSelector("button[onclick='myPromptFunction()']");
     public static final By CONFIRM_TEXT = By.id("confirm-demo");
-
     public static final By PROMPT_TEXT = By.id("prompt-demo");
+    public static final By LOADING_ELEMENT = By.cssSelector("#loading");
+    public static final By LOADING_ELEMENT_CHILD = By.cssSelector("#loading>*");
 
 
 

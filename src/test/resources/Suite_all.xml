@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="all suite">
+    <test name="all-test">
+        <packages>
+            <package name="com.coherent.aqa.java.training.web.korobeynik"/>
+        </packages>
+        <classes>
+        </classes>
+    </test>
+</suite>

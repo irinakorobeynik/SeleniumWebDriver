@@ -1,46 +1,65 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
+import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.ByVariables.*;
+import java.time.Duration;
+
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.waitForElementAndClick;
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.waitForElementDisplayed;
 
-
-public class YandexTest {
+@Log4j2
+public class YandexTest extends BaseTest {
 
     private static final WebDriver driver = new ChromeDriver();
 
-    @BeforeMethod
-    public void openBrowser() {
-        driver.get(MAIL_RU_URL);
-
+    @BeforeClass
+    public void init() {
+        openBrowser(driver, MAIL_RU_URL);
     }
 
-    @Test
-    public void loginTest() {
+    @Test(dataProvider = "credentialsDataProvider", dataProviderClass = BaseTest.class)
+    public void loginTest(String username, String password) throws InterruptedException {
         waitForElementDisplayed(LOGIN_BUTTON, driver, 30);
         driver.findElement(LOGIN_BUTTON).click();
         waitForElementDisplayed(AUTH_POP_UP_LOCATOR, driver, 5);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(driver.findElement(AUTH_POP_UP_LOCATOR).isDisplayed(), "Login Form is not displayed");
-        driver.findElement(USERNAME_FIELD).sendKeys(LOGIN_INPUT2);
+        try {
+            WebElement currentAccount = driver.findElement(CURRENT_ACCOUNT);
+            if (currentAccount.isDisplayed()) {
+                currentAccount.click();
+                waitForElementAndClick(ADD_ACCOUNT, driver, 5);
+            }
+        } catch (NoSuchElementException e) {
+            log.error("Add account element is not found", e);
+        }
+        driver.findElement(USERNAME_FIELD).sendKeys(username);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
         waitForElementDisplayed(CURRENT_ACCOUNT, driver, 5);
-        driver.findElement(PASSWORD_FIELD).sendKeys(PASSWORD_INPUT2);
+        driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
-        waitForElementDisplayed(MAIL_APP_CONTENT, driver, 5);
+        waitForElementDisplayed(MAIL_APP_CONTENT, driver, 15);
         softAssert.assertTrue(driver.findElement(MAIL_APP_CONTENT).isDisplayed(), "Inbox is not displayed");
         softAssert.assertAll("Something goes wrong with login Test");
+        driver.findElement(USER_SETTINGS).click();
+        Thread.sleep(1000); //implicit
+        waitForElementDisplayed(EXIT, driver, 5);
+        driver.findElement(EXIT).click();
     }
 
-    @AfterMethod
-    public void closeBrowser() {
-        driver.quit();
+    @AfterClass
+    public void tearDown() {
+        quit(driver);
     }
 }
 

@@ -10,12 +10,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.ByVariables.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 
 public class MultiselectTest {
@@ -38,7 +36,7 @@ public class MultiselectTest {
         selectedRandomOptions.forEach(select::selectByVisibleText);
         driver.findElement(FIRST_SELECTED).click();
         Assert.assertTrue(driver.findElement(FIRST_SELECTED_TEXT).getText()
-                .contains(selectedRandomOptions.get(selectedRandomOptions.size()-1)));
+                .contains(selectedRandomOptions.get(selectedRandomOptions.size() - 1)), "Selected option doesn't match");
     }
 
     @AfterClass

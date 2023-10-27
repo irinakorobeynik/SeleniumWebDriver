@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.ByVariables.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 public class AlertTests {
     private static final WebDriver driver = new ChromeDriver();
@@ -49,6 +49,7 @@ public class AlertTests {
                 softAssert.assertEquals(driver.findElement(CONFIRM_TEXT).getText(), CONFIRM_NEGATIVE_TEXT, "Confirm Text doesn't match");
                 break;
         }
+        softAssert.assertAll("Something went wrong with Confirm test");
 
     }
 
@@ -58,10 +59,11 @@ public class AlertTests {
         WebUtils.waitForAlertDisplayed(driver, 2);
         alert = driver.switchTo().alert();
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(alert.getText(), "Please enter your name", "Alert message doesn't match");
+        softAssert.assertEquals(alert.getText(), PROMPT_TEXT_BOX, "Prompt message doesn't match");
         alert.sendKeys(USERNAME);
         alert.accept();
         softAssert.assertTrue(driver.findElement(PROMPT_TEXT).getText().contains(USERNAME), "Confirm Text doesn't match");
+        softAssert.assertAll("Something went wrong with prompt text");
 
     }
 

@@ -1,26 +1,29 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
 import com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.ByVariables.*;
-import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.waitForElementAndClick;
+import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.waitForElementDisplayed;
 
-
+@Log4j2
 public class YandexTest {
 
-    private static final WebDriver driver = new ChromeDriver();;
+    private static final WebDriver driver = new ChromeDriver();
 
     @BeforeClass
     public void openBrowser() {
-
         driver.get(MAIL_RU_URL);
 
     }
@@ -35,16 +38,16 @@ public class YandexTest {
         try {
             WebElement currentAccount = driver.findElement(CURRENT_ACCOUNT);
             if (currentAccount.isDisplayed()) {
-               currentAccount.click();
-               waitForElementAndClick(ADD_ACCOUNT, driver, 5);
+                currentAccount.click();
+                waitForElementAndClick(ADD_ACCOUNT, driver, 5);
             }
         } catch (NoSuchElementException e) {
-            e.printStackTrace();
+            log.error("Add account element is not found", e);
         }
         driver.findElement(USERNAME_FIELD).sendKeys(username);
-        driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-       // waitForElementDisplayed(CURRENT_ACCOUNT, driver, 5);
+        driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
+        waitForElementDisplayed(CURRENT_ACCOUNT, driver, 5);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON_IN_POP_UP).click();
         waitForElementDisplayed(MAIL_APP_CONTENT, driver, 15);

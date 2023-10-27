@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 public class CommonUtils {
@@ -40,4 +39,11 @@ public class CommonUtils {
                 .toList();
 
     }
+
+    public static List<Employee> getFilteredEmployeeList(int age, double salary,List<Employee> employeeList){
+        return employeeList.stream()
+                .filter(employee -> employee.getSalary() <= salary && employee.getAge() > age)
+                .collect(Collectors.toList());
+    }
+
 }

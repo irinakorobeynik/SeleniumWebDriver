@@ -29,6 +29,11 @@ public class WebUtils {
         ));
     }
 
+    public static void waitForElementToHaveText(By element, WebDriver driver, int sec, String text) {
+        new WebDriverWait(driver, Duration.ofSeconds(sec)).pollingEvery(Duration.ofMillis(50))
+                .until(ExpectedConditions.textToBePresentInElement(driver.findElement(element), text));
+    }
+
     @DataProvider(name = "credentialsDataProvider")
     public static Object[][] credentialsDataProvider() {
         return new Object[][]{
@@ -50,5 +55,6 @@ public class WebUtils {
     public static void waitForAlertDisplayed(WebDriver driver, int sec) {
         new WebDriverWait(driver, Duration.ofSeconds(sec)).until(ExpectedConditions.alertIsPresent());
     }
+
 
 }

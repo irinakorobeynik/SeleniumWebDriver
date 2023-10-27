@@ -2,16 +2,24 @@ package com.coherent.aqa.java.training.web.korobeynik.utilities;
 
 import org.openqa.selenium.By;
 
-public class ByVariables {
+public class Constants {
     public static final String MAIL_RU_URL = CommonUtils.getPropertyValue("url");
     public static final String MULTISELECT_URL = CommonUtils.getPropertyValue("url2");
     public static final String ALERT_URL = CommonUtils.getPropertyValue("url3");
     public static final String DL_URL = CommonUtils.getPropertyValue("url4");
+    public static final String BAR_URL = CommonUtils.getPropertyValue("url5");
+    public static final String TABLE_URL = CommonUtils.getPropertyValue("url6");
     public static final String USERNAME = CommonUtils.getPropertyValue("user");
+    public static final String SELECTED_DROPDOWN_VALUE = "10";
+    public static final int AGE = 20;
+    public static final double SALARY = 120000.0;
+    public static final String START_PERCENT = "0%";
+    public static final String RELOAD_PERCENT = "50%";
+
     public static final String ALERT_TEXT_BOX = "I am an alert box!";
     public static final String CONFIRM_TEXT_BOX = "Press a button!";
     public static final String CONFIRM_POSITIVE_TEXT = "You pressed OK!";
-    public static final String CONFIRM_NEGATIVE_TEXT ="You pressed Cancel!" ;
+    public static final String CONFIRM_NEGATIVE_TEXT = "You pressed Cancel!";
     public static final String PROMPT_TEXT_BOX = "Please enter your name";
     public static final String DL_FIRST_NAME_LABEL = "First Name :";
     public static final String DL_LAST_NAME_LABEL = "Last Name :";
@@ -41,7 +49,14 @@ public class ByVariables {
     public static final By PROMPT_TEXT = By.id("prompt-demo");
     public static final By LOADING_ELEMENT = By.cssSelector("#loading");
     public static final By LOADING_ELEMENT_CHILD = By.cssSelector("#loading>*");
-
+    public static final By DOWNLOAD_BUTTON = By.cssSelector("#cricle-btn");
+    public static final By BAR_TEXT = By.cssSelector(".percenttext");
+    public static final By TABLE_DROPDOWN = By.cssSelector("select[name='example_length']");
+    public static final By TABLE_CELLS = By.cssSelector("tbody>*");
+    public static final By TABLE_CELL_COLUMNS = By.xpath(".//td");
+    public static final By PAGINATION_NEXT_PAGE = By.xpath("//a[@class='paginate_button current']/following::*[@class ='paginate_button ']");
+    public static final By PAGINATION_PAGES = By.xpath("//*[@class='paginate_button ']");
+    public static final By PAGINATION_TEXT = By.id("example_info");
 
 
 }

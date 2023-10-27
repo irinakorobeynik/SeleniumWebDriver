@@ -11,12 +11,12 @@ import org.testng.asserts.SoftAssert;
 
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
-public class DynamicLoadingTest {
+public class DynamicLoadingTest extends BaseTest {
     private static final WebDriver driver = new ChromeDriver();
 
     @BeforeClass
-    public void openBrowser() {
-        driver.get(DL_URL);
+    public void init() {
+        openBrowser(driver, DL_URL);
     }
 
     @Test
@@ -28,11 +28,11 @@ public class DynamicLoadingTest {
         softAssert.assertTrue(driver.findElement(LOADING_ELEMENT).getText().contains(DL_LAST_NAME_LABEL), "Last name is not displayed");
         softAssert.assertTrue(driver.findElement(LOADING_ELEMENT).findElement(By.tagName("img")).isDisplayed(), "Image is not displayed");
         softAssert.assertAll("User is not loaded properly");
-
     }
 
     @AfterClass
-    public void quit() {
-        driver.quit();
+    public void tearDown() {
+        quit(driver);
     }
+
 }

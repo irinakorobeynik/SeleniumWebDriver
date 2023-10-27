@@ -20,12 +20,12 @@ import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.
 import static java.lang.Integer.parseInt;
 
 @Log4j2
-public class TableSortTest {
+public class TableSortTest extends BaseTest {
     private static final WebDriver driver = new ChromeDriver();
 
     @BeforeClass
-    public void openBrowser() {
-        driver.get(TABLE_URL);
+    public void init() {
+        openBrowser(driver, TABLE_URL);
     }
 
     @Test
@@ -50,12 +50,11 @@ public class TableSortTest {
                     WebUtils.waitForElementAndClick(PAGINATION_NEXT_PAGE, driver, 3);
                 });
         CommonUtils.getFilteredEmployeeList(AGE, SALARY, allEmployeeList).forEach(log::info);
-
     }
 
     @AfterClass
-    public void quit() {
-        driver.quit();
+    public void tearDown() {
+        quit(driver);
     }
 
 }

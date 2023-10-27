@@ -1,6 +1,5 @@
 package com.coherent.aqa.java.training.web.korobeynik;
 
-import com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -18,17 +17,16 @@ import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.w
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.WebUtils.waitForElementDisplayed;
 
 @Log4j2
-public class YandexTest {
+public class YandexTest extends BaseTest {
 
     private static final WebDriver driver = new ChromeDriver();
 
     @BeforeClass
-    public void openBrowser() {
-        driver.get(MAIL_RU_URL);
-
+    public void init() {
+        openBrowser(driver, MAIL_RU_URL);
     }
 
-    @Test(dataProvider = "credentialsDataProvider", dataProviderClass = WebUtils.class)
+    @Test(dataProvider = "credentialsDataProvider", dataProviderClass = BaseTest.class)
     public void loginTest(String username, String password) throws InterruptedException {
         waitForElementDisplayed(LOGIN_BUTTON, driver, 30);
         driver.findElement(LOGIN_BUTTON).click();
@@ -59,13 +57,10 @@ public class YandexTest {
         driver.findElement(EXIT).click();
     }
 
-
     @AfterClass
-    public void quit() {
-        driver.quit();
+    public void tearDown() {
+        quit(driver);
     }
-
-
 }
 
 

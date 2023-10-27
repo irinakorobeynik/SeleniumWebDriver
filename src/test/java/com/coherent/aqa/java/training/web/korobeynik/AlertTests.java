@@ -13,13 +13,13 @@ import org.testng.asserts.SoftAssert;
 
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
-public class AlertTests {
+public class AlertTests extends BaseTest {
     private static final WebDriver driver = new ChromeDriver();
     private static Alert alert;
 
     @BeforeClass
-    public void openBrowser() {
-        driver.get(ALERT_URL);
+    public void init() {
+        openBrowser(driver, ALERT_URL);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class AlertTests {
 
     }
 
-    @Test(dataProvider = "alertDataProvider", dataProviderClass = WebUtils.class)
+    @Test(dataProvider = "alertDataProvider", dataProviderClass = BaseTest.class)
     public void testConfirmBox(String alertAction) {
         driver.findElement(CONFIRM_BUTTON).click();
         WebUtils.waitForAlertDisplayed(driver, 2);
@@ -68,7 +68,8 @@ public class AlertTests {
     }
 
     @AfterClass
-    public void quit() {
-        driver.quit();
+    public void tearDown() {
+        quit(driver);
     }
+
 }

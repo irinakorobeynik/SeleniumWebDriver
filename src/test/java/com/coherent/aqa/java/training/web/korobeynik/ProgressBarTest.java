@@ -13,12 +13,12 @@ import org.testng.annotations.Test;
 
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
-public class ProgressBarTest {
+public class ProgressBarTest extends BaseTest {
     private static final WebDriver driver = new ChromeDriver();
 
     @BeforeClass
-    public void openBrowser() {
-        driver.get(BAR_URL);
+    public void init() {
+        openBrowser(driver, BAR_URL);
     }
 
     @Test
@@ -30,8 +30,8 @@ public class ProgressBarTest {
     }
 
     @AfterClass
-    public void quit() {
-        driver.quit();
+    public void tearDown() {
+        quit(driver);
     }
 }
 

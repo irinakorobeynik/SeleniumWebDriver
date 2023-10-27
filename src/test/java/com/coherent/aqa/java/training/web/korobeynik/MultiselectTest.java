@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 import static com.coherent.aqa.java.training.web.korobeynik.utilities.Constants.*;
 
 
-public class MultiselectTest {
+public class MultiselectTest extends BaseTest {
     private static final WebDriver driver = new ChromeDriver();
 
     @BeforeClass
-    public void openBrowser() {
-        driver.get(MULTISELECT_URL);
+    public void init() {
+        openBrowser(driver, MULTISELECT_URL);
     }
 
     @Test
@@ -40,9 +40,8 @@ public class MultiselectTest {
     }
 
     @AfterClass
-    public void quit() {
-        driver.quit();
+    public void tearDown() {
+        quit(driver);
     }
-
 
 }

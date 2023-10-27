@@ -3,13 +3,13 @@ package com.coherent.aqa.java.training.web.korobeynik.utilities;
 import org.openqa.selenium.By;
 
 public class Constants {
-    public static final String MAIL_RU_URL = CommonUtils.getPropertyValue("url");
-    public static final String MULTISELECT_URL = CommonUtils.getPropertyValue("url2");
-    public static final String ALERT_URL = CommonUtils.getPropertyValue("url3");
-    public static final String DL_URL = CommonUtils.getPropertyValue("url4");
-    public static final String BAR_URL = CommonUtils.getPropertyValue("url5");
-    public static final String TABLE_URL = CommonUtils.getPropertyValue("url6");
-    public static final String USERNAME = CommonUtils.getPropertyValue("user");
+    public static final String MAIL_RU_URL = CommonUtils.getPropertyValue("yandex.url");
+    public static final String MULTISELECT_URL = CommonUtils.getPropertyValue("multiselect.url");
+    public static final String ALERT_URL = CommonUtils.getPropertyValue("alert.url");
+    public static final String DL_URL = CommonUtils.getPropertyValue("dynamic.loading.url");
+    public static final String BAR_URL = CommonUtils.getPropertyValue("progress.bar.url");
+    public static final String TABLE_URL = CommonUtils.getPropertyValue("table.url");
+    public static final String USERNAME = CommonUtils.getPropertyValue("user.primary.username");
     public static final String SELECTED_DROPDOWN_VALUE = "10";
     public static final int AGE = 20;
     public static final double SALARY = 120000.0;

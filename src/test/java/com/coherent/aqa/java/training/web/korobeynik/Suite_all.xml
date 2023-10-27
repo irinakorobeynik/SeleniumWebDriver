@@ -6,7 +6,6 @@
             <package name="com.coherent.aqa.java.training.web.korobeynik"/>
         </packages>
         <classes>
-<!--            <class name="com.coherent.aqa.java.training.web.korobeynik.AlertTests"/>-->
         </classes>
     </test>
 </suite>
